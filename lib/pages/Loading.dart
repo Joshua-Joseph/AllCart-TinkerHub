@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoppingapp/pages/Home.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key key}) : super(key: key);
@@ -31,7 +32,7 @@ class _LoadingState extends State<Loading> {
             children: <Widget>[
               Center(
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('images/allcart-logo.png'),
+                  backgroundImage: AssetImage('assets/allcart-logo.png'),
                   radius: 60.0,
                 ),
               ),
@@ -98,11 +99,14 @@ class _LoadingState extends State<Loading> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(28.0),
                           side: BorderSide(color: Colors.green))
-                      //textStyle: TextStyle(fontSize: 24),
-                      ),
+                    //textStyle: TextStyle(fontSize: 24),
+                  ),
                   onPressed: () {
-                    this._submitPressed = true;
-                    _signIn(context);
+
+                     Navigator.push(context, new MaterialPageRoute(
+                        builder:(context) =>Home()
+                     ));
+
                   },
                   child: Text(
                     'SIGN IN',
@@ -117,14 +121,5 @@ class _LoadingState extends State<Loading> {
           ),
         ));
   }
-
-  void _signIn(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Hello'),
-          );
-        });
-  }
 }
+
