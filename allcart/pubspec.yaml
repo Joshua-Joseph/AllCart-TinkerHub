@@ -28,6 +28,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_search_bar: ^2.1.0
+
+  flappy_search_bar: 1.4.1
+  flappy_search_bar_fork: ^1.7.4
 
 dev_dependencies:
   flutter_test:
@@ -46,7 +50,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/
+    - assets/images/
+    - assets/homepic/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -63,12 +68,12 @@ flutter:
   fonts:
     - family: GoblinOne
       fonts:
-        - asset: fonts/GoblinOne-Regular.ttf
+        - asset: assets/fonts/GoblinOne-Regular.ttf
 
           #style: italic
     - family: PlayfairDisplaySC
       fonts:
-        - asset: fonts/PlayfairDisplaySC-Bold.ttf
+        - asset: assets/fonts/PlayfairDisplaySC-Bold.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
