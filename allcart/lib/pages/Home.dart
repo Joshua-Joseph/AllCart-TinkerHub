@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:allcart/pages/Loading.dart';
 import 'package:allcart/pages/widgets/Category.dart';
 import 'package:allcart/pages/display.dart';
+import 'package:allcart/authentication_service.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   //const Home({Key key}) : super(key: key);
@@ -56,7 +58,13 @@ class _HomeState extends State<Home> {
                 showSearch(context: context, delegate: Search(widget.list));
               },
               icon: Icon(Icons.search),
-            )
+            ),
+            IconButton(
+                icon: Icon(Icons.filter_alt_rounded),
+                onPressed: () {
+                  Navigator.push(context,
+                      new MaterialPageRoute(builder: (context) => Filter()));
+                })
           ],
           centerTitle: true,
           title: Text('Search Bar'),
@@ -368,8 +376,309 @@ class _HomeState extends State<Home> {
               image2: 'assets/homepic/womens tshirt2.jpg',
               price2: 'PRICE: 2300Rs',
             ),
+            Center(
+              child: TextButton(
+                  onPressed: () {
+                    context.read<AuthenticationService>().signOut();
+                  },
+                  child: Text('SignOut')),
+            )
           ],
         ));
+  }
+}
+
+class Filter extends StatelessWidget {
+  const Filter({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 40.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Center(
+              child: Text('Filter by gender'),
+            ),
+            Center(
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        new MaterialPageRoute(builder: (context) => male()));
+                  },
+                  child: Text('Male')),
+            ),
+            Center(
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        new MaterialPageRoute(builder: (context) => female()));
+                  },
+                  child: Text('Female')),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class male extends StatelessWidget {
+  const male({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Search Bar'),
+        ),
+        body: GridView.count(
+            primary: false,
+            padding: const EdgeInsets.all(20.0),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 50,
+            crossAxisCount: 2,
+            children: <Widget>[
+              Category(
+                text: 'MENS JEANS',
+                image: 'assets/homepic/mens jeans.jpg',
+                text1: 'BLACK JEANS ',
+                image1: 'assets/homepic/mens jeans.jpg',
+                price1: 'PRICE: 2500Rs',
+                text2: 'BLUE JEANS',
+                image2: 'assets/homepic/mens jeans2.jpg',
+                price2: 'PRICE: 3000Rs',
+              ),
+              Category(
+                text: 'MENS KURTA',
+                image: 'assets/homepic/mens kurta.jpg',
+                text1: 'BLUE KURTA ',
+                image1: 'assets/homepic/mens kurta.jpg',
+                price1: 'PRICE: 2500Rs',
+                text2: 'CASUAL YELLOW KURTA',
+                image2: 'assets/homepic/mens kurta2.jpg',
+                price2: 'PRICE: 1500Rs',
+              ),
+              Category(
+                text: 'MENS PANT',
+                image: 'assets/homepic/mens pant.jpg',
+                text1: 'LIGHT BROWN PANT ',
+                image1: 'assets/homepic/mens pant.jpg',
+                price1: 'PRICE: 1000Rs',
+                text2: 'CASUAL PANTS',
+                image2: 'assets/homepic/mens pant2.jpg',
+                price2: 'PRICE: 1500Rs',
+              ),
+              Category(
+                text: 'MENS SHIRTS',
+                image: 'assets/homepic/mens shirts.jpg',
+                text1: 'CASUAL SHIRTS ',
+                image1: 'assets/homepic/mens shirts.jpg',
+                price1: 'PRICE: 1800Rs',
+                text2: 'CHECKED SHIRT',
+                image2: 'assets/homepic/mens shirts2.jpg',
+                price2: 'PRICE: 1500Rs',
+              ),
+              Category(
+                text: 'MENS SUIT',
+                image: 'assets/homepic/mens suit.jpg',
+                text1: 'STYLED BLUE SUIT ',
+                image1: 'assets/homepic/mens suit.jpg',
+                price1: 'PRICE: 4000Rs',
+                text2: 'WINE PEAK',
+                image2: 'assets/homepic/mens suit2.jpg',
+                price2: 'PRICE: 3000Rs',
+              ),
+              Category(
+                text: 'MENS TSHIRTS',
+                image: 'assets/homepic/mens tshirts.jpg',
+                text1: 'STRIPED PINK',
+                image1: 'assets/homepic/mens tshirts.jpg',
+                price1: 'PRICE: 1000Rs',
+                text2: 'PRINTED SHIRTS',
+                image2: 'assets/homepic/mens tshirts2.jpg',
+                price2: 'PRICE: 1800Rs',
+              ),
+              Category(
+                text: 'MENS SHOE',
+                image: 'assets/homepic/mens shoe.jpg',
+                text1: 'WHITE CASUALS',
+                image1: 'assets/homepic/mens shoe.jpg',
+                price1: 'PRICE: 1600Rs',
+                text2: 'FORMAL BROWN',
+                image2: 'assets/homepic/mens shoe2.jpg',
+                price2: 'PRICE: 1800Rs',
+              ),
+              Category(
+                text: 'MENS WALLET',
+                image: 'assets/homepic/mens wallet.jpg',
+                text1: 'LEATHER BROWN',
+                image1: 'assets/homepic/mens wallet.jpg',
+                price1: 'PRICE: 1600Rs',
+                text2: 'VERTICAL WALLET',
+                image2: 'assets/homepic/mens wallet2.jpg',
+                price2: 'PRICE: 1800Rs',
+              ),
+              Category(
+                text: 'MENS WATCHES',
+                image: 'assets/homepic/mens watches.jpg',
+                text1: 'IWC',
+                image1: 'assets/homepic/mens watches.jpg',
+                price1: 'PRICE: 7500Rs',
+                text2: 'BLACK PREMIUM',
+                image2: 'assets/homepic/mens watches2.jpg',
+                price2: 'PRICE: 8000Rs',
+              ),
+            ]));
+  }
+}
+
+class female extends StatelessWidget {
+  const female({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Search Bar'),
+        ),
+        body: GridView.count(
+            primary: false,
+            padding: const EdgeInsets.all(20.0),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 50,
+            crossAxisCount: 2,
+            children: <Widget>[
+              Category(
+                text: 'SAREES',
+                image: 'assets/homepic/saree.jpg',
+                text1: 'CASUAL SAREE',
+                image1: 'assets/homepic/saree.jpg',
+                price1: 'PRICE: 5000Rs',
+                text2: 'BRIDAL SAREE',
+                image2: 'assets/homepic/saree2.jpg',
+                price2: 'PRICE: 6000Rs',
+              ),
+              Category(
+                text: 'WOMEN SUIT',
+                image: 'assets/homepic/women suit.jpg',
+                text1: 'PINK SUIT',
+                image1: 'assets/homepic/women suit.jpg',
+                price1: 'PRICE: 8000Rs',
+                text2: 'CHECKED JACKET SUIT',
+                image2: 'assets/homepic/women suit2.jpg',
+                price2: 'PRICE: 60000Rs',
+              ),
+              Category(
+                text: 'WOMEN CHURIDAR',
+                image: 'assets/homepic/womens churidar.jpg',
+                text1: 'BLUE SALWAR',
+                image1: 'assets/homepic/womens churidar.jpg',
+                price1: 'PRICE: 2000Rs',
+                text2: 'RAIN AND RAINBOW',
+                image2: 'assets/homepic/womens churidar2.jpg',
+                price2: 'PRICE: 1700Rs',
+              ),
+              Category(
+                text: 'WOMEN FROCKS',
+                image: 'assets/homepic/womens frocks.jpg',
+                text1: 'PRINTED FROCKS',
+                image1: 'assets/homepic/womens frocks.jpg',
+                price1: 'PRICE: 2500Rs',
+                text2: 'WHITE PRINTED',
+                image2: 'assets/homepic/womens frocks2.jpg',
+                price2: 'PRICE: 1700Rs',
+              ),
+              Category(
+                text: 'WOMEN JEANS',
+                image: 'assets/homepic/womens jeans.jpg',
+                text1: 'SKY BLUE JEANS',
+                image1: 'assets/homepic/womens jeans.jpg',
+                price1: 'PRICE: 2700Rs',
+                text2: 'PLAIN BLACK JEANS',
+                image2: 'assets/homepic/womens jeans2.jpg',
+                price2: 'PRICE: 1700Rs',
+              ),
+              Category(
+                text: 'WOMEN KURTA',
+                image: 'assets/homepic/womens kurta.jpg',
+                text1: 'PRINTED KURTA',
+                image1: 'assets/homepic/womens kurta.jpg',
+                price1: 'PRICE: 1400Rs',
+                text2: 'DARK BLUE KURTA',
+                image2: 'assets/homepic/womens kurta2.jpg',
+                price2: 'PRICE: 1300Rs',
+              ),
+              Category(
+                text: 'WOMEN PANT',
+                image: 'assets/homepic/womens pant.jpg',
+                text1: 'SOFT PINK PANTS',
+                image1: 'assets/homepic/womens pant.jpg',
+                price1: 'PRICE: 1000Rs',
+                text2: 'PLAIN GREEN PANTS',
+                image2: 'assets/homepic/womens pant2.jpg',
+                price2: 'PRICE: 1500Rs',
+              ),
+              Category(
+                text: 'WOMEN SHIRTS',
+                image: 'assets/homepic/womens shirts.jpg',
+                text1: 'BLUE AND WHITE SHIRT',
+                image1: 'assets/homepic/womens shirts.jpg',
+                price1: 'PRICE: 1500Rs',
+                text2: ' WHITE CHINESE NECK',
+                image2: 'assets/homepic/womens shirts2.jpg',
+                price2: 'PRICE: 2000Rs',
+              ),
+              Category(
+                text: 'WOMEN SHOES',
+                image: 'assets/homepic/womens shoes.jpg',
+                text1: 'SMOOTH WEARS',
+                image1: 'assets/homepic/womens shoes.jpg',
+                price1: 'PRICE: 2000Rs',
+                text2: 'FASHION SHOES',
+                image2: 'assets/homepic/womens shoes2.jpg',
+                price2: 'PRICE: 2700Rs',
+              ),
+              Category(
+                text: 'WOMEN WALLET',
+                image: 'assets/homepic/womens wallet.jpg',
+                text1: 'PINK CUSTOM MADE',
+                image1: 'assets/homepic/womens wallet.jpg',
+                price1: 'PRICE: 900Rs',
+                text2: 'LEATHER WALLET',
+                image2: 'assets/homepic/womens wallet2.jpg',
+                price2: 'PRICE: 1200Rs',
+              ),
+              Category(
+                text: 'WOMEN WATCHES',
+                image: 'assets/homepic/womens watches.jpg',
+                text1: 'CHUMBAK',
+                image1: 'assets/homepic/womens watches.jpg',
+                price1: 'PRICE: 4000Rs',
+                text2: 'KOVONSH',
+                image2: 'assets/homepic/womens watches2.jpg',
+                price2: 'PRICE: 7000Rs',
+              ),
+              Category(
+                text: 'WOMEN TSHIRTS',
+                image: 'assets/homepic/womens tshirt.jpg',
+                text1: 'BLUE TSHIRTS',
+                image1: 'assets/homepic/womens tshirt.jpg',
+                price1: 'PRICE: 1700Rs',
+                text2: ' PRINTED TSHIRTS',
+                image2: 'assets/homepic/womens tshirt2.jpg',
+                price2: 'PRICE: 2300Rs',
+              ),
+            ]));
   }
 }
 

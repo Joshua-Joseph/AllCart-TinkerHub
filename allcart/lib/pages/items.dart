@@ -8,8 +8,14 @@ class Items extends StatelessWidget {
   final String pic;
   final String content;
   final String price;
+  final String size;
 
-  const Items({this.pic, this.content, this.price});
+  const Items({
+    this.pic,
+    this.content,
+    this.price,
+    this.size = "0",
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,13 @@ class Items extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           onPressed: () {
             Navigator.push(
-                context, new MaterialPageRoute(builder: (context) => Price()));
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => Price(
+                          image: pic,
+                          text: content,
+                          price: price,
+                        )));
           },
           child: CircleAvatar(
             backgroundImage: AssetImage(pic),

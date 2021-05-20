@@ -14,7 +14,7 @@ class Display extends StatelessWidget {
   final String image1;
   final String image2;
 
-  const Display({
+  Display({
     this.text,
     this.image,
     this.text1,

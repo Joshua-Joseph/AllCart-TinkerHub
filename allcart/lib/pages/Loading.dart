@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:allcart/pages/Home.dart';
+import 'package:allcart/authentication_service.dart';
+import 'package:provider/provider.dart';
+import 'package:allcart/signup.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key key}) : super(key: key);
@@ -9,7 +12,9 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  bool _submitPressed = false;
+  //bool _submitPressed = false;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -54,6 +59,7 @@ class _LoadingState extends State<Loading> {
               Center(
                 child: TextField(
                   obscureText: false,
+                  controller: emailController,
                   decoration: InputDecoration(
                     hintText: 'USER ID',
                     hintStyle: TextStyle(color: Colors.black26),
@@ -74,6 +80,7 @@ class _LoadingState extends State<Loading> {
               Center(
                 child: TextField(
                   obscureText: true,
+                  controller: passwordController,
                   decoration: InputDecoration(
                     hintText: 'PASSWORD',
                     hintStyle: TextStyle(color: Colors.black26),
@@ -102,8 +109,11 @@ class _LoadingState extends State<Loading> {
                       //textStyle: TextStyle(fontSize: 24),
                       ),
                   onPressed: () {
-                    Navigator.push(context,
-                        new MaterialPageRoute(builder: (context) => Home()));
+                    context.read<AuthenticationService>().signIn(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim());
+                    // Navigator.push(context,
+                    //     new MaterialPageRoute(builder: (context) => Home()));
                   },
                   child: Text(
                     'SIGN IN',
@@ -113,7 +123,30 @@ class _LoadingState extends State<Loading> {
                         fontSize: 20.0),
                   ),
                 ),
-              )
+              ),
+              SizedBox(height: size.height * 0.04),
+              Center(
+                  child: TextButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                    padding: EdgeInsets.fromLTRB(40, 20, 40, 20),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(28.0),
+                        side: BorderSide(color: Colors.green))
+                    //textStyle: TextStyle(fontSize: 24),
+                    ),
+                onPressed: () {
+                  Navigator.push(context,
+                      new MaterialPageRoute(builder: (context) => Signup()));
+                },
+                child: Text(
+                  'CREATE ACCOUNT',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0),
+                ),
+              ))
             ],
           ),
         ));
