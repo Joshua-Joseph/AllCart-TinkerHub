@@ -5,11 +5,11 @@ items in bag by making a payment through Razorpay. You can also search for vario
 ## Team members
 1. Gautham Krishna [https://github.com/gautham462]
 2. Joshua Joseph [https://github.com/Joshua-Joseph]
-3. Chris M Shaji
+3. Chris M Shaji [https://github.com/chris100911]
 ## Team Id
 BFH/rech15eqXqJQn8k9L/2021BFH/rech15eqXqJQn8k9L/2021
 ## Link to product walkthrough
-[link to video]
+[https://drive.google.com/file/d/19A180x6kw5_KTEAHN9uorHw_7dZYotr-/view?usp=sharing]
 ## How it Works ?
 1. Step 1
 2. Step 2
@@ -26,6 +26,11 @@ BFH/rech15eqXqJQn8k9L/2021BFH/rech15eqXqJQn8k9L/2021
 ## How to configure
 1. Set up VS Code or Android Studio. 
 2. If using VS Code, install the flutter extensions.
-3. Clone the repository git clone
+3. Clone the repository "git clone https://github.com/Joshua-Joseph/AllCart-TinkerHub.git"
+ 
 ## How to Run
 Instructions for running
+1. Go to Run --> Start Debugging 
+2. Make sure your phone is connected or your emulator is running
+3. The app opens up in your phone/emulator.
+4. The apk can be directly installed on your phone by clicking on the link provided for apk.
