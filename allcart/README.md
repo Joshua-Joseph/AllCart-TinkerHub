@@ -1,9 +1,9 @@
 ![BFH Banner](https://trello-attachments.s3.amazonaws.com/542e9c6316504d5797afbfb9/542e9c6316504d5797afbfc1/39dee8d993841943b5723510ce663233/Frame_19.png)
-# Project Name
+# BFH-FL3: Shopping App
 Long Description about project. This project do that. This project is awesome...
 ## Team members
-1. Name [Embed personal github URL]
-2. Name [Embed perosnal github URL]
+1. Gautham Krishna [Embed personal github URL]
+2. Joshua Joseph [Embed perosnal github URL]
 ## Team Id
 Team id here
 ## Link to product walkthrough
