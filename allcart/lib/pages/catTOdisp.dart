@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:allcart/pages/Home.dart';
-import 'package:allcart/pages/widgets/Category.dart';
 import 'package:allcart/pages/display.dart';
 import 'CartScreen.dart';
 
@@ -27,8 +25,6 @@ class catTOdisp extends StatelessWidget {
       this.id1,
       this.id2,
       this.title});
-
-  // const catTOdisp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

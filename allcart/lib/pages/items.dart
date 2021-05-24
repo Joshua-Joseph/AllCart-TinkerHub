@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:allcart/pages/Loading.dart';
-import 'package:allcart/pages/Home.dart';
-import 'package:allcart/pages/widgets/Category.dart';
 import 'package:allcart/pages/expanded.dart';
 
 class Items extends StatelessWidget {

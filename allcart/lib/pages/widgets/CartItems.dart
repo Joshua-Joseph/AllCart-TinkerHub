@@ -19,7 +19,7 @@ class CartPdt extends StatelessWidget {
         color: Colors.red,
         child: Center(
           child: Text(
-            'Remove Item',
+            'Remove $name',
             style: TextStyle(color: Colors.white, fontSize: 20.0),
           ),
         ),

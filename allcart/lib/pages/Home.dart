@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:allcart/pages/Loading.dart';
 import 'package:allcart/pages/widgets/Category.dart';
 import 'package:allcart/pages/display.dart';
 import 'package:allcart/pages/CartScreen.dart';
-import 'package:allcart/authentication_service.dart';
-import 'package:provider/provider.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Home extends StatefulWidget {
   static const routeName = '/home';

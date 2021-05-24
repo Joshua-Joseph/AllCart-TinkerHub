@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:allcart/pages/Loading.dart';
 import 'package:allcart/authentication_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:allcart/pages/Home.dart';
 
 class Signup extends StatefulWidget {
   static const routeName = '/signup';
@@ -25,7 +23,7 @@ class _SignupState extends State<Signup> {
               title: Text('An Error Occured'),
               content: Text(msg),
               actions: <Widget>[
-                FlatButton(
+                TextButton(
                   child: Text('Okay'),
                   onPressed: () {
                     Navigator.of(ctx).pop();

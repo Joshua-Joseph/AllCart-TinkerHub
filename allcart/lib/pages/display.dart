@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:allcart/pages/items.dart';
-import 'package:allcart/pages/widgets/category.dart';
 
 class Display extends StatelessWidget {
   final String image;

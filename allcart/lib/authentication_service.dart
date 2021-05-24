@@ -1,5 +1,3 @@
-import 'package:allcart/pages/Loading.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
@@ -43,8 +41,6 @@ class Authentication with ChangeNotifier {
       if (responseData['error'] != null) {
         throw HttpException(responseData['error']['message']);
       }
-//      print(responseData);
-
     } catch (error) {
       throw error;
     }

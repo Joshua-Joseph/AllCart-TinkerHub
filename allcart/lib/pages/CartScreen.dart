@@ -3,10 +3,8 @@ import 'package:allcart/pages/orders.dart';
 import 'package:provider/provider.dart';
 import 'package:allcart/pages/Cart.dart';
 import 'package:allcart/pages/widgets/CartItems.dart';
-
 import 'dart:math';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-import 'package:allcart/pages/expanded.dart';
 
 class CartScreen extends StatefulWidget {
   static const routeName = '/cart';
@@ -78,6 +76,7 @@ class _CartScreenState extends State<CartScreen> {
     int randomNumber = random.nextInt(06) + 1;
     int randomNumber1 = randomNumber + 2;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange[300],
         title: Text(
@@ -138,7 +137,6 @@ class _CartScreenState extends State<CartScreen> {
 
 class CheckoutButton extends StatefulWidget {
   final Cart cart;
-  // final int total;
 
   const CheckoutButton({
     @required this.cart,

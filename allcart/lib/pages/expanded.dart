@@ -1,11 +1,8 @@
 import 'package:allcart/pages/CartScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:allcart/pages/items.dart';
-
 import 'Cart.dart';
 import 'package:allcart/pages/products.dart';
-import 'package:allcart/pages/widgets/Category.dart';
 import 'package:provider/provider.dart';
 
 class Price extends StatelessWidget {

@@ -107,8 +107,6 @@ class _LoadingState extends State<Loading> {
                         decoration: InputDecoration(
                           hintText: 'EMAIL ID',
                           hintStyle: TextStyle(color: Colors.black26),
-                          // filled: true,
-                          // fillColor:
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(24.0)),
@@ -139,8 +137,6 @@ class _LoadingState extends State<Loading> {
                         decoration: InputDecoration(
                           hintText: 'PASSWORD',
                           hintStyle: TextStyle(color: Colors.black26),
-                          // filled: true,
-                          // fillColor:
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(24.0)),
@@ -163,9 +159,7 @@ class _LoadingState extends State<Loading> {
                             padding: EdgeInsets.fromLTRB(40, 20, 40, 20),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(28.0),
-                                side: BorderSide(color: Colors.green))
-                            //textStyle: TextStyle(fontSize: 24),
-                            ),
+                                side: BorderSide(color: Colors.green))),
                         onPressed: () {
                           _submit();
                         },
@@ -186,9 +180,7 @@ class _LoadingState extends State<Loading> {
                             padding: EdgeInsets.fromLTRB(40, 20, 40, 20),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(28.0),
-                                side: BorderSide(color: Colors.green))
-                            //textStyle: TextStyle(fontSize: 24),
-                            ),
+                                side: BorderSide(color: Colors.green))),
                         onPressed: () {
                           Navigator.of(context)
                               .pushReplacementNamed(Signup.routeName);
@@ -203,23 +195,6 @@ class _LoadingState extends State<Loading> {
                       ),
                     ),
                     SizedBox(height: 20.0),
-                    Center(
-                      child: TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.info,
-                          color: Colors.lightBlueAccent,
-                        ),
-                        label: Text(
-                          'About Team',
-                          style: TextStyle(color: Colors.lightBlueAccent),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.grey[300],
-                          padding: EdgeInsets.fromLTRB(40, 20, 40, 20),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
