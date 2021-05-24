@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:allcart/pages/Loading.dart';
 import 'package:allcart/authentication_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:allcart/pages/Home.dart';
 
 class Signup extends StatefulWidget {
+  static const routeName = '/signup';
   const Signup({Key key}) : super(key: key);
 
   @override
@@ -11,14 +14,53 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String email, password;
-  bool _alertIsVisible = false;
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  TextEditingController _passwordController = new TextEditingController();
+
+  Map<String, String> _authData = {'email': '', 'password': ''};
+  void _showErrorDialog(String msg) {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+              title: Text('An Error Occured'),
+              content: Text(msg),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Okay'),
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                  },
+                )
+              ],
+            ));
+  }
+
+  Future<void> _submit() async {
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+    _formKey.currentState.save();
+
+    try {
+      await Provider.of<Authentication>(context, listen: false)
+          .signUp(_authData['email'], _authData['password']);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(' Successfully Signed Up')));
+      Navigator.of(context).pushReplacementNamed(Loading.routeName);
+    } catch (error) {
+      var errorMessage = 'Authentication Failed. Please try again later.';
+      _showErrorDialog(errorMessage);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.lightGreen[700],
           title: Text('SIGN UP'),
         ),
         body: Form(
@@ -29,6 +71,7 @@ class _SignupState extends State<Signup> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                SizedBox(height: size.height * 0.05),
                 Center(
                   child: Text(
                     'WELCOME',
@@ -41,20 +84,23 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: size.height * 0.05),
                 Center(
                   child: TextFormField(
                     obscureText: false,
-                    validator: (input) {
-                      if (input.isEmpty) {
-                        return 'Provide an email';
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value.isEmpty || !value.contains('@')) {
+                        return 'invalid email';
                       }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _authData['email'] = value;
                     },
                     decoration: InputDecoration(
-                      hintText: 'ENTER NEW USER ID',
+                      hintText: 'ENTER NEW EMAIL ID',
                       hintStyle: TextStyle(color: Colors.black26),
-                      // filled: true,
-                      // fillColor:
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(24.0)),
                         borderSide: BorderSide(color: Colors.green, width: 2),
@@ -64,24 +110,25 @@ class _SignupState extends State<Signup> {
                         borderSide: BorderSide(color: Colors.green),
                       ),
                     ),
-                    onSaved: (input) => email = input,
                   ),
                 ),
-                SizedBox(height: 30),
-                SizedBox(height: size.height * 0.02),
+                SizedBox(height: size.height * 0.03),
                 Center(
                   child: TextFormField(
                     obscureText: true,
-                    validator: (input) {
-                      if (input.length < 6) {
-                        return 'Longer password please';
+                    controller: _passwordController,
+                    validator: (value) {
+                      if (value.isEmpty || value.length <= 5) {
+                        return 'invalid password';
                       }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _authData['password'] = value;
                     },
                     decoration: InputDecoration(
                       hintText: 'PASSWORD',
                       hintStyle: TextStyle(color: Colors.black26),
-                      // filled: true,
-                      // fillColor:
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(24.0)),
                         borderSide: BorderSide(color: Colors.green, width: 2),
@@ -91,10 +138,34 @@ class _SignupState extends State<Signup> {
                         borderSide: BorderSide(color: Colors.green),
                       ),
                     ),
-                    onSaved: (input) => password = input,
                   ),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: size.height * 0.02),
+                Center(
+                  child: TextFormField(
+                    obscureText: true,
+                    validator: (value) {
+                      if (value.isEmpty || value != _passwordController.text) {
+                        return 'invalid password';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {},
+                    decoration: InputDecoration(
+                      hintText: 'CONFIRM PASSWORD',
+                      hintStyle: TextStyle(color: Colors.black26),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(24.0)),
+                        borderSide: BorderSide(color: Colors.green, width: 2),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(24.0)),
+                        borderSide: BorderSide(color: Colors.green),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: size.height * 0.05),
                 Center(
                   child: TextButton(
                     style: ElevatedButton.styleFrom(
@@ -106,7 +177,7 @@ class _SignupState extends State<Signup> {
                         //textStyle: TextStyle(fontSize: 24),
                         ),
                     onPressed: () {
-                      signUp();
+                      _submit();
                     },
                     child: Text(
                       'CONFIRM',
@@ -122,58 +193,5 @@ class _SignupState extends State<Signup> {
             ),
           ),
         ));
-  }
-
-  void signUp() async {
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
-      try {
-        await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email, password: password);
-        _showMessage(context);
-        // Navigator.pushReplacement(
-        //     context, MaterialPageRoute(builder: (context) => Loading()));
-      } catch (e) {
-        print(e.message);
-      }
-    }
-  }
-  // Future<String> signUp({String email, String password}) async {
-  //   if (_formKey.currentState.validate()) {
-  //     _formKey.currentState.save();
-  //     try {
-  //       await FirebaseAuth.instance
-  //           .createUserWithEmailAndPassword(email: email, password: password);
-  //       _showMessage(context);
-  //     } on FirebaseAuthException catch (e) {
-  //       return e.message;
-  //     }
-  //   }
-  // }
-
-  void _showMessage(BuildContext context) {
-    //button within alert
-    Widget okButton = TextButton(
-        onPressed: () {
-          //Navigator.of(context).pop();
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => Loading()),
-              (Route<dynamic> route) => false);
-          this._alertIsVisible = false;
-        },
-        child: Text('OK'));
-    //dialog box
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Successfully Signed up'),
-            content: Text('Return to login page to continue'),
-            actions: <Widget>[
-              okButton,
-            ],
-            elevation: 05,
-          );
-        });
   }
 }

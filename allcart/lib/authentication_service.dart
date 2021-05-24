@@ -1,47 +1,52 @@
 import 'package:allcart/pages/Loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+import 'http_exception.dart';
 
-class AuthenticationService {
-  final FirebaseAuth firebaseAuth;
+class Authentication with ChangeNotifier {
+  Future<void> signUp(String email, String password) async {
+    const url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDPamoPh6o6G9zzRKK8hIT5WVmlXJDIh6M';
 
-  AuthenticationService(this.firebaseAuth);
-
-  /// Changed to idTokenChanges as it updates depending on more cases.
-  Stream<User> get authStateChanges => firebaseAuth.idTokenChanges();
-
-  /// This won't pop routes so you could do something like
-  /// Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
-  /// after you called this method if you want to pop all routes.
-  Future<void> signOut() async {
-    await firebaseAuth.signOut();
-  }
-
-  /// There are a lot of different ways on how you can do exception handling.
-  /// This is to make it as easy as possible but a better way would be to
-  /// use your own custom class that would take the exception and return better
-  /// error messages. That way you can throw, return or whatever you prefer with that instead.
-  Future<String> signIn({String email, String password}) async {
     try {
-      await firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
-      return "Signed in";
-    } on FirebaseAuthException catch (e) {
-      return e.message;
+      final response = await http.post(Uri.parse(url),
+          body: json.encode({
+            'email': email,
+            'password': password,
+            'returnSecureToken': true,
+          }));
+      final responseData = json.decode(response.body);
+//      print(responseData);
+      if (responseData['error'] != null) {
+        throw HttpException(responseData['error']['message']);
+      }
+    } catch (error) {
+      throw error;
     }
   }
 
-  /// There are a lot of different ways on how you can do exception handling.
-  /// This is to make it as easy as possible but a better way would be to
-  /// use your own custom class that would take the exception and return better
-  /// error messages. That way you can throw, return or whatever you prefer with that instead.
-  // Future<String> signUp({String email, String password}) async {
-  //   try {
-  //     await _firebaseAuth.createUserWithEmailAndPassword(
-  //         email: email, password: password);
-  //     return "Signed up";
-  //   } on FirebaseAuthException catch (e) {
-  //     return e.message;
-  //   }
-  // }
+  Future<void> logIn(String email, String password) async {
+    const url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDPamoPh6o6G9zzRKK8hIT5WVmlXJDIh6M';
 
+    try {
+      final response = await http.post(Uri.parse(url),
+          body: json.encode({
+            'email': email,
+            'password': password,
+            'returnSecureToken': true,
+          }));
+      final responseData = json.decode(response.body);
+      if (responseData['error'] != null) {
+        throw HttpException(responseData['error']['message']);
+      }
+//      print(responseData);
+
+    } catch (error) {
+      throw error;
+    }
+  }
 }

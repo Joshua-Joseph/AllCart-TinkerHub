@@ -7,15 +7,11 @@ import 'package:allcart/pages/expanded.dart';
 class Items extends StatelessWidget {
   final String pic;
   final String content;
-  final String price;
+  final int price;
   final String size;
+  final String id;
 
-  const Items({
-    this.pic,
-    this.content,
-    this.price,
-    this.size = "0",
-  });
+  const Items({this.pic, this.content, this.price, this.size = "0", this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +27,7 @@ class Items extends StatelessWidget {
                           image: pic,
                           text: content,
                           price: price,
+                          id: id,
                         )));
           },
           child: CircleAvatar(
@@ -44,15 +41,20 @@ class Items extends StatelessWidget {
         Text(
           content,
           style: TextStyle(
-            color: Colors.blue[400],
+            fontSize: 15.0,
+            fontFamily: 'GoblineOne',
+            color: Colors.black54,
             letterSpacing: 2.0,
+            fontWeight: FontWeight.bold,
           ),
         ),
         SizedBox(height: 10.0),
         Text(
-          price,
+          'PRICE: $price Rs',
           style: TextStyle(
-            color: Colors.redAccent,
+            fontSize: 15.0,
+            fontFamily: 'GoblineOne',
+            color: Colors.redAccent[900],
           ),
         ),
         SizedBox(height: 10.0),
