@@ -204,11 +204,20 @@ class _LoadingState extends State<Loading> {
                     ),
                     SizedBox(height: 20.0),
                     Center(
-                      child: RaisedButton.icon(
+                      child: TextButton.icon(
                         onPressed: () {},
-                        icon: Icon(Icons.mail),
-                        label: Text('Gmail'),
-                        color: Colors.lightBlue,
+                        icon: Icon(
+                          Icons.info,
+                          color: Colors.lightBlueAccent,
+                        ),
+                        label: Text(
+                          'About Team',
+                          style: TextStyle(color: Colors.lightBlueAccent),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.grey[300],
+                          padding: EdgeInsets.fromLTRB(40, 20, 40, 20),
+                        ),
                       ),
                     ),
                   ],
