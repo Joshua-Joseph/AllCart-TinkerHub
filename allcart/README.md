@@ -11,18 +11,19 @@ BFH/rech15eqXqJQn8k9L/2021BFH/rech15eqXqJQn8k9L/2021
 ## Link to product walkthrough
 [https://drive.google.com/file/d/19A180x6kw5_KTEAHN9uorHw_7dZYotr-/view?usp=sharing]
 ## How it Works ?
-1. Step 1
-2. Step 2
+1. Code explanation in brief
+2. App demo 
 ## Libraries used
-  firebase_core: ^1.2.0
-  firebase_database: ^6.1.2
-  firebase_auth: ^1.2.0
-  provider: ^5.0.0
-  razorpay_flutter: ^1.2.6
-  toast: ^0.1.5
-  http: ^0.13.3
-  cupertino_icons: ^1.0.2
-  flutter_launcher_icons: ^0.9.0
+  1. firebase_core: ^1.2.0
+  2. firebase_database: ^6.1.2
+  3. firebase_auth: ^1.2.0
+  4. provider: ^5.0.0
+  5. razorpay_flutter: ^1.2.6
+  6. toast: ^0.1.5
+  7. http: ^0.13.3
+  8. cupertino_icons: ^1.0.2
+  9. flutter_launcher_icons: ^0.9.0
+  
 ## How to configure
 1. Set up VS Code or Android Studio. 
 2. If using VS Code, install the flutter extensions.
