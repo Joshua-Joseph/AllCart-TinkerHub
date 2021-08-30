@@ -24,3 +24,10 @@ This is a shopping app. The name of this app is AllCart.
 ### ScreenShots 
 
 ![SignIn](/ScreenShots/Login.jpeg)
+![SignUp](/ScreenShots/SignUp.jpeg)
+![Home Screen](/ScreenShots/Home.jpeg)
+![Category](/ScreenShots/Categories.jpeg)
+![Category](/ScreenShots/Categories_2.jpeg)
+![Product Details](/ScreenShots/Product_Details.jpeg)
+![Cart Screen](/ScreenShots/CartScreen.jpeg)
+![Payment](/ScreenShots/Razorpay.jpeg)
